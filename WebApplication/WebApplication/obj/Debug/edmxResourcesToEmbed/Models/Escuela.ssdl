@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EscuelaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cargo">
+    <Key>
+      <PropertyRef Name="car_cod" />
+    </Key>
+    <Property Name="car_cod" Type="int" Nullable="false" />
+    <Property Name="car_des" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="usu_cod" />
+    </Key>
+    <Property Name="usu_cod" Type="int" Nullable="false" />
+    <Property Name="usu_nom" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="car_cod" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__usuario__car_cod__0519C6AF">
+    <End Role="cargo" Type="Self.cargo" Multiplicity="1" />
+    <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargo">
+        <PropertyRef Name="car_cod" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="car_cod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EscuelaModelStoreContainer">
+    <EntitySet Name="cargo" EntityType="Self.cargo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__usuario__car_cod__0519C6AF" Association="Self.FK__usuario__car_cod__0519C6AF">
+      <End Role="cargo" EntitySet="cargo" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EscuelaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cargo">
+    <Key>
+      <PropertyRef Name="car_cod" />
+    </Key>
+    <Property Name="car_cod" Type="Int32" Nullable="false" />
+    <Property Name="car_des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__car_cod__0519C6AF" FromRole="cargo" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="usu_cod" />
+    </Key>
+    <Property Name="usu_cod" Type="Int32" Nullable="false" />
+    <Property Name="usu_nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="car_cod" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cargo" Relationship="Self.FK__usuario__car_cod__0519C6AF" FromRole="usuario" ToRole="cargo" />
+  </EntityType>
+  <Association Name="FK__usuario__car_cod__0519C6AF">
+    <End Role="cargo" Type="Self.cargo" Multiplicity="1" />
+    <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargo">
+        <PropertyRef Name="car_cod" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="car_cod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EscuelaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cargo" EntityType="Self.cargo" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" />
+    <AssociationSet Name="FK__usuario__car_cod__0519C6AF" Association="Self.FK__usuario__car_cod__0519C6AF">
+      <End Role="cargo" EntitySet="cargo" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

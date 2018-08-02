@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication.Models.usuario>
+
+@{
+    ViewBag.Title = "UsuarioCargo";
+}
+
+<h2>UsuarioCargo</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_cod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.car_cod)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_cod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.car_cod)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
